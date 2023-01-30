@@ -1,13 +1,14 @@
-document.addEventListener("DOMContectLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector('.grid')
-    let square = Array.from(document.querySelector('.grid div'))
+    let squares = Array.from(document.querySelectorAll('.grid div'))
     const ScoreDisplay = document.querySelector('#score')
     const StartBtn = document.querySelector('#start-button')
     const width = 10
 
+    // creating the Tetrominos(shapes in tetris game)
     const lTetromino = [
-        [1, width + 1, width * 2 + 1, 2],
-        [width, width + 1, width + 2, width * 2 + 2],
+        [1, width+1, width*2+1, 2],
+        [width, width+1, width+2, width*2+2],
         [1, width + 1, width * 2 + 1, width * 2],
         [width, width * 2, width * 2 + 1, width * 2 + 2]
     ]
@@ -40,10 +41,20 @@ document.addEventListener("DOMContectLoaded", () => {
         [width, width + 1, width + 2, width + 3],
     ]
 
-    const
-    const theTetrominos = [lTetromino]
-    let currentPosition = 4
-    let current = theTetrominos[0][0]
-})
 
-//test
+    const theTetrominos = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+
+    let currentPosition = 4
+    let currentRotation = 0
+    let random = Math.floor(Math.random()*theTetrominos.length)
+    console.log()
+    let current = theTetrominos[0][0]
+
+    function draw() {
+        current.forEach(index => {
+            squares[currentPosition + index].classList.add('tetromino')
+        })
+    }
+    draw()
+
+})
