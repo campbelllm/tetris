@@ -45,3 +45,5 @@ document.addEventListener("DOMContectLoaded", () => {
     let currentPosition = 4
     let current = theTetrominos[0][0]
 })
+
+//test
