@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(e.keyCode === 37){
             moveLeft()
         }else if (e.keyCode === 38) {
-            //rotatoe
+            rotate()
         }else if (e.keyCode === 39){
             moveRight()
         }else if (e.keyCode === 40) {
@@ -133,5 +133,24 @@ document.addEventListener("DOMContentLoaded", () => {
         draw()
     }
     
+    //rotate the tetromino (moving to the next index in the tetrominos array)
+    function rotate () {
+        undraw()
+        //original currentRotation is set at index 0 above we have to add 1 to move to the
+        //next index
+        currentRotation ++
+        //check length of tetromino array and once it reaches the last one resets index to 0 to start over
+        if(currentRotation === current.length) {
+            currentRotation = 0
+        }
+        current = theTetrominos[random][currentRotation]
+        draw()
+    }
+
+
+
+
+
+
 
 })
