@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // creating the Tetrominos(shapes in tetris game)
     const lTetromino = [
-        [1, width+1, width*2+1, 2],
-        [width, width+1, width+2, width*2+2],
+        [1, width + 1, width * 2 + 1, 2],
+        [width, width + 1, width + 2, width * 2 + 2],
         [1, width + 1, width * 2 + 1, width * 2],
         [width, width * 2, width * 2 + 1, width * 2 + 2]
     ]
@@ -46,17 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentPosition = 4
     let currentRotation = 0
-    let random = Math.floor(Math.random()*theTetrominos.length)
+    let random = Math.floor(Math.random() * theTetrominos.length)
     console.log()
     let current = theTetrominos[random][currentRotation]
-    
+
     //display Tetrimino
     function draw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.add('tetromino')
         })
     }
-    
+
 
     //remove display of Tetrimino
     function undraw() {
@@ -64,5 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
             squares[currentPosition + index].classList.remove('tetromino')
         })
     }
- draw()
+   
+    /// moving down the tetromino
+    timerId= setInterval(moveDown, 1000)
+
+    function moveDown() {
+        undraw()
+        currentPosition += width
+        draw()
+    }
+
+
+
+
+
+
 })
