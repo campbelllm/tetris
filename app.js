@@ -64,18 +64,34 @@ document.addEventListener("DOMContentLoaded", () => {
             squares[currentPosition + index].classList.remove('tetromino')
         })
     }
-   
-    /// moving down the tetromino
-    timerId= setInterval(moveDown, 1000)
+
+    /// move down the tetromino
+    timerId = setInterval(moveDown, 1000)
 
     function moveDown() {
         undraw()
         currentPosition += width
         draw()
+        freeze()
     }
 
+    //stop the tetromino
 
+    function freeze() {
+        //tetromino's look forward one square to see if the next div has a class name of 'taken'
+        //if it does then the tetromino stops and then the divs of that current tetromino are given 
+        //the class name of 'taken'
 
+        if (current.some(index => squares[currentPosition + index + width].classList.contains("taken"))) {
+            current.forEach(index => squares[currentPosition + index].classList.add("taken"))
+            //a new tetromino now needs to fall
+            random = Math.floor(Math.random() * theTetrominos.length)
+            current = theTetrominos[random][currentRotation]
+            currentPosition = 4
+            draw()
+        }
+
+    }
 
 
 
