@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startBtn = document.querySelector('#start-button')
     const width = 10
     let nextRandom = 0
+    let timerId
 
     // creating the Tetrominos(shapes in tetris game)
     const lTetromino = [
@@ -66,23 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    /// move down the tetromino
-    timerId = setInterval(moveDown, 1000)
 
     //function for keyCodes (number associated with each key)
     function control(e) {
-        if(e.keyCode === 37){
+        if (e.keyCode === 37) {
             moveLeft()
-        }else if (e.keyCode === 38) {
+        } else if (e.keyCode === 38) {
             rotate()
-        }else if (e.keyCode === 39){
+        } else if (e.keyCode === 39) {
             moveRight()
-        }else if (e.keyCode === 40) {
+        } else if (e.keyCode === 40) {
             moveDown()
         }
     }
     document.addEventListener('keyup', control)
- 
+
     function moveDown() {
         undraw()
         currentPosition += width
@@ -96,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //tetromino's look forward one square to see if the next div has a class name of 'taken'
         //if it does then the tetromino stops and then the divs of that current tetromino are given 
         //the class name of 'taken'
-        
+
         if (current.some(index => squares[currentPosition + index + width].classList.contains("taken"))) {
             current.forEach(index => squares[currentPosition + index].classList.add("taken"))
             //a new tetromino now needs to fall
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isAtLeftEdge) currentPosition -= 1
 
         if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-            currentPosition +=1
+            currentPosition += 1
         }
 
         draw()
@@ -125,25 +124,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function moveRight() {
         undraw()
-        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1)
+        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1)
 
 
-        if(!isAtRightEdge) currentPosition+=1
+        if (!isAtRightEdge) currentPosition += 1
 
-        if(current.some(index=> squares[currentPosition + index].classList.contains('taken'))){
-            currentPosition -=1
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -= 1
         }
         draw()
     }
-    
+
     //rotate the tetromino (moving to the next index in the tetrominos array)
-    function rotate () {
+    function rotate() {
         undraw()
         //original currentRotation is set at index 0 above we have to add 1 to move to the
         //next index
-        currentRotation ++
+        currentRotation++
         //check length of tetromino array and once it reaches the last one resets index to 0 to start over
-        if(currentRotation === current.length) {
+        if (currentRotation === current.length) {
             currentRotation = 0
         }
         current = theTetrominos[random][currentRotation]
@@ -171,14 +170,24 @@ document.addEventListener("DOMContentLoaded", () => {
         displaySquares.forEach(square => {
             square.classList.remove('tetromino')
         })
-        upNextTetrominos[nextRandom].forEach( index => {
+        upNextTetrominos[nextRandom].forEach(index => {
             displaySquares[displayIndex + index].classList.add('tetromino')
         })
     }
 
-//add functionality to the buttom
-// startBtn.addEventListener("click", () => {
-//     )
+    //add functionality to the buttom
+    startBtn.addEventListener("click", () => {
+        if (timerId) {
+            clearInterval(timerId)
+            timerId = null
+        } else {
+            draw()
+            timerId = setInterval(moveDown, 1000)
+            nextRandom = Math.floor(Math.random() * theTetrominos.length)
+            displayShape()
+        }
+    }
+    )
 
 
 
