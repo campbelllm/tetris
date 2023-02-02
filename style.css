@@ -1,28 +1,30 @@
 * {
     font-family: "Titillium Web", sans-serif;
 }
-body{
-     width:100%;
-     height: 100%;
-     display: flex;
-     flex-wrap: wrap;
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+
 }
+
 .welcome {
     width: 100%;
     text-align: center;
 }
 
 .grid {
-    width: 200px;
-    height: 400px;
+    width: 300px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
     background-color: #E4C988;
+    margin: 30px;
 }
 
 .grid div {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .tetromino {
@@ -36,7 +38,7 @@ body{
     height: 80px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #E4C988;
+    background-color: #E4C988
 }
 
 .mini-grid div {
@@ -46,4 +48,7 @@ body{
 
 .container {
     display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
 }
