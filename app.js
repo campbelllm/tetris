@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let timerId
     let score = 0
     const colors = [
-        "orange",
-        "red",
-        "purple",
-        "green",
-        "blue"
+        "#C27664",
+        "#E26868",
+        "#B05A7A",
+        "#92BA92",
+        "#84D2C5"
     ]
     // creating the Tetrominos(shapes in tetris game)
     const lTetromino = [
