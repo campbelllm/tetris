@@ -5,14 +5,16 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-
+  background-color: #f3ebdd;
+  text-align: center;
 }
 
-.welcome {
-    width: 100%;
-    text-align: center;
+button {
+    padding: 10px;
+    border:solid 1px #E4C988;
+    background-color: #f3ebdd;
+    font-size: 14px;
 }
-
 .grid {
     width: 300px;
     height: 600px;
@@ -40,7 +42,22 @@ body {
     flex-wrap: wrap;
     background-color: #E4C988
 }
-
+h3 {
+    height: 25px;
+}
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    height: 600px;
+    margin: 30px;
+}
+.next-shape {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
 .mini-grid div {
     height: 20px;
     width: 20px;
