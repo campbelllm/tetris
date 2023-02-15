@@ -9,17 +9,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let score = 0
     const colors = [
         "#C27664",
+        "#D99E71",
         "#E26868",
         "#B05A7A",
         "#92BA92",
         "#84D2C5"
     ]
     // creating the Tetrominos(shapes in tetris game)
-    const lTetromino = [
+    const backwardslTetromino = [
         [1, width + 1, width * 2 + 1, 2],
         [width, width + 1, width + 2, width * 2 + 2],
         [1, width + 1, width * 2 + 1, width * 2],
         [width, width * 2, width * 2 + 1, width * 2 + 2]
+    ]
+
+    const lTetromino = [
+        [1, width + 1, width * 2 + 1, width * 2 + 2],
+        [width, width + 1, width + 2, width * 2],
+        [1, 2, width + 2, width * 2 + 2],
+        [width, width + 1, width + 2, 2]
+        
     ]
 
     const zTetromino = [
@@ -51,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
 
-    const theTetrominos = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+    const theTetrominos = [backwardslTetromino, lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 
     let currentPosition = 4
     let currentRotation = 0
