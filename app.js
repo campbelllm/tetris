@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.addEventListener("click", () => {
         if (timerId) {
             clearInterval(timerId)
-            timerId = null
+            timerId = location.reload()
         } else {
             draw()
             timerId = setInterval(moveDown, 1000)
