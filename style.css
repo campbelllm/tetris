@@ -11,7 +11,7 @@ body {
 
 button {
     padding: 10px;
-    border:solid 1px #E4C988;
+    border: solid 1px #E4C988;
     background-color: #f3ebdd;
     font-size: 14px;
 }
@@ -29,7 +29,8 @@ button {
     width: 30px;
 }
 
-.tetromino {
+.taken {
+    background-color: #f3ebdd;
     
 }
 

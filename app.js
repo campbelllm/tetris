@@ -178,11 +178,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
         undraw()
         //original currentRotation is set at index 0 above we have to add 1 to move to the
-        //next index
         currentRotation++
         //check length of tetromino array and once it reaches the last one resets index to 0 to start over
-        if (!isAtLeftEdge) currentPosition -= 0
-        if (!isAtRightEdge) currentPosition += 0
+        if (!isAtLeftEdge) currentPosition -= 1
+        if (!isAtRightEdge) currentPosition +=  1
+        // if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+        //     currentPosition -= 1
+        // } if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+        //     currentPosition += 1
+        // }
         if (currentRotation === current.length) {
             currentRotation = 0
         }
