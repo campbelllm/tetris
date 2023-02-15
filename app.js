@@ -8,18 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let nextRandom = 0
     let restart
     let score = 0
-    let timer =0 
-    
+    let timer = 0
+
     const colors = [
         "#C27664",
         "#D99E71",
         "#E26868",
         "#B05A7A",
         "#92BA92",
-        "#84D2C5"
+        "#84D2C5",
+        "#FAF2D7"
     ]
     // creating the Tetrominos(shapes in tetris game)
-    const backwardslTetromino = [
+    const jTetromino = [
         [1, width + 1, width * 2 + 1, 2],
         [width, width + 1, width + 2, width * 2 + 2],
         [1, width + 1, width * 2 + 1, width * 2],
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ]
 
-    const zTetromino = [
+    const sTetromino = [
         [width * 2, width * 2 + 1, width + 1, width + 2],
         [0, width, width + 1, width * 2 + 1],
         [width * 2, width * 2 + 1, width + 1, width + 2],
@@ -62,8 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
         [width, width + 1, width + 2, width + 3],
     ]
 
+    const zTetromino = [
+        [width, width + 1, width * 2 + 1, width * 2 + 2],
+        [1, width + 1, width, width * 2],
+        [width, width + 1, width * 2 + 1, width * 2 + 2],
+        [1, width + 1, width, width * 2],
+    ]
 
-    const theTetrominos = [backwardslTetromino, lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+
+    const theTetrominos = [jTetromino, lTetromino, sTetromino, tTetromino, oTetromino, iTetromino, zTetromino]
 
     let currentPosition = 4
     let currentRotation = 0
@@ -97,10 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
             moveRight()
         } else if (e.keyCode === 40) {
             moveDown()
+
         }
     }
+  
     document.addEventListener('keyup', control)
-    document.addEventListener('keydown', control)
+    document.addEventListener('keydown', (e)=>{
+        if(e.keyCode === 40){
+            moveDown()
+        }
+    }
+
+    )
 
     function moveDown() {
         undraw()
@@ -182,8 +198,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //get first rotation of each Tetromino, going to copy index 0 from each tetromino array
     const upNextTetrominos = [
-        [1, displayWidth + 1, displayWidth * 2 + 1, 2], //lTetromino
-        [displayWidth * 2, displayWidth * 2 + 1, displayWidth + 1, displayWidth + 2],//zTetromino
+        [1, displayWidth + 1, displayWidth * 2 + 1, 2], //jTetromino
+        [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 2 + 2]//lTetromino
+        [displayWidth * 2, displayWidth * 2 + 1, displayWidth + 1, displayWidth + 2],//sTetromino
+        [displayWidth, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 2 + 2],//zTetromino
         [1, displayWidth, displayWidth + 1, displayWidth + 2], //tTetromino
         [0, displayWidth, 1, displayWidth + 1], //oTetromino
         [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //iTetromino
@@ -205,10 +223,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //add functionality to the buttom
     startBtn.addEventListener("click", () => {
-        const timerCounter = setInterval(function() {
+        const timerCounter = setInterval(function () {
             timer++
             timerDisplay.innerHTML = timer
-            }, 1000)
+        }, 1000)
         if (restart) {
             clearInterval(restart)
             restart = location.reload()
@@ -217,11 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
             restart = setInterval(moveDown, 1000)
             nextRandom = Math.floor(Math.random() * theTetrominos.length)
             displayShape()
-             
+
         }
-        timerCounter() 
+        timerCounter()
     }
-   
+
     )
 
     function addScore() {
