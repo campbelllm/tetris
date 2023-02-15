@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     document.addEventListener('keyup', control)
+    document.addEventListener('keydown', control)
 
     function moveDown() {
         undraw()
