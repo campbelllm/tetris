@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         [width, width + 1, width + 2, width * 2],
         [1, 2, width + 2, width * 2 + 2],
         [width, width + 1, width + 2, 2]
-        
+
     ]
 
     const zTetromino = [
@@ -154,16 +154,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //rotate the tetromino (moving to the next index in the tetrominos array)
     function rotate() {
+        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1)
+        const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0)
         undraw()
         //original currentRotation is set at index 0 above we have to add 1 to move to the
         //next index
         currentRotation++
         //check length of tetromino array and once it reaches the last one resets index to 0 to start over
+        if (!isAtLeftEdge) currentPosition -= 0
+        if (!isAtRightEdge) currentPosition += 0
         if (currentRotation === current.length) {
             currentRotation = 0
         }
         current = theTetrominos[random][currentRotation]
         draw()
+
     }
 
     //up-next tetromino in mini-grid
