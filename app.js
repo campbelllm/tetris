@@ -2,11 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.querySelector('.grid')
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
+    const timerDisplay = document.querySelector('#timer')
     const startBtn = document.querySelector('#start-button')
     const width = 10
     let nextRandom = 0
-    let timerId
+    let restart
     let score = 0
+    let timer =0 
+    
     const colors = [
         "#C27664",
         "#D99E71",
@@ -202,16 +205,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //add functionality to the buttom
     startBtn.addEventListener("click", () => {
-        if (timerId) {
-            clearInterval(timerId)
-            timerId = location.reload()
+        const timerCounter = setInterval(function() {
+            timer++
+            timerDisplay.innerHTML = timer
+            }, 1000)
+        if (restart) {
+            clearInterval(restart)
+            restart = location.reload()
         } else {
             draw()
-            timerId = setInterval(moveDown, 1000)
+            restart = setInterval(moveDown, 1000)
             nextRandom = Math.floor(Math.random() * theTetrominos.length)
             displayShape()
+             
         }
+        timerCounter() 
     }
+   
     )
 
     function addScore() {
@@ -237,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function gameOver() {
         if (current.some(index => squares[currentPosition + index].classList.contains("taken"))) {
             scoreDisplay.innerHTML = 'end'
-            clearInterval(timerId)
+            clearInterval(restart)
         }
     }
 })
