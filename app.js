@@ -108,10 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
-  
+
     document.addEventListener('keyup', control)
-    document.addEventListener('keydown', (e)=>{
-        if(e.keyCode === 40){
+    document.addEventListener('keydown', (e) => {
+        if (e.keyCode === 40) {
             moveDown()
         }
     }
@@ -179,14 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
         undraw()
         //original currentRotation is set at index 0 above we have to add 1 to move to the
         currentRotation++
-        //check length of tetromino array and once it reaches the last one resets index to 0 to start over
+        //mkae it so that the tetromino does not wrap to another line when rotated
         if (!isAtLeftEdge) currentPosition -= 1
-        if (!isAtRightEdge) currentPosition +=  1
-        // if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-        //     currentPosition -= 1
-        // } if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-        //     currentPosition += 1
-        // }
+        if (!isAtRightEdge) currentPosition += 1
+        //check length of tetromino array and once it reaches the last one resets index to 0 to start over
         if (currentRotation === current.length) {
             currentRotation = 0
         }
